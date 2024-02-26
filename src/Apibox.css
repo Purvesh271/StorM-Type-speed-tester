@@ -1,0 +1,18 @@
+.box1{
+    height: 8rem;
+    width: 30rem;
+    padding: 1rem;
+    margin: 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color:rgb(90, 88, 86);
+    text-align: center;
+    align-items: center;
+  }
+  
+  .opts{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem; 
+  }
