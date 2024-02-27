@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Apibox.css'
 
-export default function(){
+export default function Apibox(){
 
     let[Text, setText] = useState({});
 
@@ -11,7 +11,6 @@ export default function(){
     const newText = async ()=>{
         let res = await fetch(url);
         let jsonRes = await res.json();
-        console.log (jsonRes);
         setText({content: jsonRes.content});
     };
 
@@ -20,7 +19,6 @@ export default function(){
         async function firstText(){
             let res = await fetch(url);
             let jsonRes = await res.json();
-            console.log (jsonRes);
             setText({content: jsonRes.content});
         } 
         firstText();
@@ -29,10 +27,13 @@ export default function(){
     //Timer 
     let [Time,setTime] = useState(30);
     let reducedTime = ()=>{
-        setTimeout(()=>{
-            Time = Time-1;
-        },1000);
-        setTime(Time)
+        const timer = setInterval(() => {
+            if(Time >= 0) {
+                setTime(Time => Time - 1)
+            } else {
+                clearInterval(timer);
+            }
+        }, 1000);
     };
 
 
@@ -46,8 +47,8 @@ export default function(){
         </div>
 
         <div className='opts'>
-            <button onClick={(newText,reducedTime)}>Start</button>
-            <h3>Time: {Time} </h3>
+            <button onClick={reducedTime}>Start</button>
+            <h3>Time: {Time >= 0 ? Time : 0} </h3>
         </div>
 
     </div>
