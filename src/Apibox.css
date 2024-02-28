@@ -16,3 +16,16 @@
     align-items: center;
     gap: 5rem; 
   }
+
+  .userBox{
+    height: 8rem;
+    width: 30rem;
+    padding: 1rem;
+    margin: 1rem;
+    border: 2px solid black;
+    border-radius: 10px;
+    background-color:rgb(241, 214, 187);
+    color: black;
+    text-align: center;
+    align-items: center;
+}
