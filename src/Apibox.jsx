@@ -25,18 +25,61 @@ export default function Apibox(){
         firstText();
     }, []);
 
+
     //Timer 
-    let [Time,setTime] = useState(10);
-    let reducedTime = ()=>{
+    let [Time, setTime] = useState(10);
+
+    let reducedTime = () => {
         const timer = setInterval(() => {
-            if(Time >= 0) {
-                setTime(Time => Time - 1)
-            } else {
-                clearInterval(timer);
-                calculateTypingSpeed();
-            }
+            setTime(prevTime => {
+                const newTime = prevTime - 1;
+                if (newTime <= 0) {
+                    clearInterval(timer);
+                    calculateTypingSpeed();
+                }
+                return newTime;
+            });
         }, 1000);
     };
+    
+
+//type 2
+    // let reducedTime = ()=>{
+    //     const timer = setInterval(() => {
+    //         if(Time >= 0) {
+    //             setTime(Time => Time - 1)
+    //         } else {
+    //             clearInterval(timer);
+    //             calculateTypingSpeed();
+    //         }
+    //     }, 1000);
+    // };
+
+// type 3
+
+    // let reducedTime = () => {
+    //     const timer = setInterval(() => {
+    //         setTime(prevTime => prevTime - 1); 
+
+    //         if (Time <= 0) {
+    //             clearInterval(timer); 
+    //             calculateTypingSpeed();
+    //         }
+    //     }, 1000);
+    // };
+
+// type 4
+    // let reducedTime = () => {
+    //     if (Time >= 0) {
+    //         timer = setInterval(() => {
+    //             setTime(Time => Time - 1);
+    //         }, 1000);
+    //     } else {
+    //         clearInterval(timer);
+    //         calculateTypingSpeed();
+    //     }
+    // };
+    
 
     // Handle typing
     let [typeTxt,settypeTxt] = useState('');
@@ -56,7 +99,7 @@ export default function Apibox(){
         setShowResult(true);
     };
 
-
+    let a =0;
 
     return(
         <div>
@@ -68,7 +111,7 @@ export default function Apibox(){
 
         <div className='opts'>
             <button onClick={reducedTime}>Start</button>
-            <h3>Time: {Time >= 0 ? Time : 0} </h3>
+            <h3>Time: {Time} </h3>
         </div>
 
         {Time === 0 && (
@@ -80,7 +123,7 @@ export default function Apibox(){
 
 
 
-        <h4  contentEditable = "true" className='userBox' onChange={handleTyping} value={}> </h4 >
+        <h4  contentEditable = "true" className='userBox' onChange={handleTyping} value={typeTxt}> </h4 >
 
 
     </div>
